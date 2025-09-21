@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a47f33b1a3f51bf41abb174d1d85635d
+guid: 4969e4c0d64b91f408b112f76db5e50c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -20,7 +20,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
+    importAnimatedCustomProperties: 1
     importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: anim_idle
+      name: Walking
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

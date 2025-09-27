@@ -1,79 +1,81 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(GroundCheck))]
+// Player Move Script
 
-public class Example : MonoBehaviour
+
+public class MovementController : MonoBehaviour
 {
-    private float playerSpeed = 5.0f;
-    private float jumpHeight = 1.5f;
-    private float gravityValue = -9.81f;
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 10f;
 
-    private CharacterController controller;
-    [Header("Physics")]
-    private Rigidbody rb;
-    private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    private Rigidbody playerRB;
+    private Animator playerAnimator;
+    private Vector3 playerMoveDirection;
+    private bool isWalking;
 
-    [Header("Input Actions")]
-    public InputActionReference moveAction; // expects Vector2
-    public InputActionReference jumpAction; // expects Button
+    private GroundCheck groundCheck;                        /// calling - groundCheck Raycast script
 
-
-    private void Awake()
+    void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        playerRB = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
+        groundCheck = GetComponent<GroundCheck>();          /// calling - groundCheck Raycast script
     }
 
-    private void OnEnable()
+    void FixedUpdate()
     {
-        moveAction.action.Enable();
-        jumpAction.action.Enable();
+        // Input + animation
+        AxisInput();
+        AnimateWalking();
+
+        // Movement
+        if (playerMoveDirection.sqrMagnitude > 0.01f)
+        {
+            isWalking = true;
+            Debug.Log("check - isWalking: " + isWalking);               // debug
+            /// --- Constrain the X & Z axis for upright movment
+            //playerRB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            /// --- Move player ---
+            Vector3 velocity = playerMoveDirection * moveSpeed;
+            playerRB.MovePosition(playerRB.position + velocity * Time.fixedDeltaTime);
+            /// --- Rotate player to face movment direction ---
+            Quaternion targetRotation = Quaternion.LookRotation(playerMoveDirection, Vector3.up);
+            playerRB.MoveRotation(Quaternion.Slerp(playerRB.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        }
+        else
+        {
+            isWalking = false;
+            Debug.Log("check - isWalking: " + isWalking);               // debug
+        }
     }
 
-    private void OnDisable()
+    // --- Functions ---
+    private void AxisInput()
     {
-        moveAction.action.Disable();
-        jumpAction.action.Disable();
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        playerMoveDirection = new Vector3(h, 0f, v).normalized;
     }
 
-    void Update()
+    private void AnimateWalking()
     {
-        groundedPlayer = controller.isGrounded;
+        playerAnimator.SetBool("isWalking", playerMoveDirection.sqrMagnitude > 0.01f);
+    }
 
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
+    private bool IsUpright()
+    {
+        float uprightDot = Vector3.Dot(transform.up, Vector3.up);
+        return uprightDot > 0.9f;
+    }
 
-        // Read input
-        Vector2 input = moveAction.action.ReadValue<Vector2>();                 // this is using the built in unity system
-        Vector3 move = new Vector3(input.x, 0, input.y).normalized;
-
-        move = Vector3.ClampMagnitude(move, 1f);
-
-        // Move
-        Vector3 velocity = move * playerSpeed;
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-
-
-        if (move != Vector3.zero)
-        {
-            transform.forward = move;
-        }
-
-        // Jump
-        if (jumpAction.action.triggered && groundedPlayer)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
-
-        // Apply gravity
-        playerVelocity.y += gravityValue * Time.deltaTime;
-
-        // Combine horizontal and vertical movement
-        Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
-        controller.Move(finalMove * Time.deltaTime);
+    private void KeepUpright()
+    {
+        Quaternion current = transform.rotation;
+        Quaternion target = Quaternion.Euler(0, current.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Slerp(current, target, 10f * Time.deltaTime);
     }
 }

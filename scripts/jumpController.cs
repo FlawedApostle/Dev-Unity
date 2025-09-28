@@ -33,7 +33,7 @@ public class JumpController : MonoBehaviour
 
 
         // Keep animator updated with grounded state
-        animator.SetBool("isGrounded", groundCheck.IsGrounded);
+        //animator.SetBool("isGrounded", groundCheck.IsGrounded);
     }
 
     /// FixedUpdate
@@ -58,8 +58,8 @@ void FixedUpdate()
             animator.SetTrigger("jump");
             jumpRequested = false;
         }
-    // Keep animator updated with grounded state
-    animator.SetBool("isGrounded", groundCheck.IsGrounded);
+        // Keep animator updated with grounded state
+        animator.SetBool("isGrounded", groundCheck.IsGrounded);
     }
 
     public void jumpHandle()

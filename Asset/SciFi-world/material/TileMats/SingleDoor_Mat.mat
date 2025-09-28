@@ -28,7 +28,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ColorTexture:
-        m_Texture: {fileID: 2800000, guid: 65a502309880e8341a6de9b9ac299c27, type: 3}
+        m_Texture: {fileID: 2800000, guid: cb4e2cf355157e042b170e54a55433e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission_Map:
@@ -36,11 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MRAO_Map:
-        m_Texture: {fileID: 2800000, guid: 30a3700cb6366f94fab5634a222e8cba, type: 3}
+        m_Texture: {fileID: 2800000, guid: 16fa5fc392de4aa42b9685cdbe90bbfb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 3443a1fbdcf5c8941b05b57e0a50095c, type: 3}
+        m_Texture: {fileID: 2800000, guid: c6ce5dfaafe6af9438d66629da9482d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RGB_Mask:

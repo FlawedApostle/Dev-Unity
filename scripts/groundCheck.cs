@@ -20,7 +20,12 @@ public class GroundCheck : MonoBehaviour
         /// https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Physics.CheckSphere.html
         IsGrounded = Physics.CheckSphere(groundCheckPoint.position, checkRadius, groundLayer);
         //debug_isGrounded();
+        //if (IsGrounded)
+        //{
 
+        /// can check collider or jump ?
+        //}
+        // Debug visualization
         Gizmos.color = IsGrounded ? Color.green : Color.red;
     }
 

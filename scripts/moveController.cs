@@ -10,11 +10,13 @@ using UnityEngine.EventSystems;
 public class MovementController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public float rotationSpeed = 10f;
+    public float mouseSensitivity = 0.5f;
+    public float moveSpeed = 1f;
+    public float rotationSpeed = 1f;
     private float v, h;
     [Header("Camera Settings")]
-    //public FirstPersonCamera cam; // assign in Inspector
+    public FirstPersonCamera cam; // assign in Inspector
+
 
     private Rigidbody playerRB;
     private Animator playerAnimator;
@@ -56,16 +58,20 @@ public class MovementController : MonoBehaviour
     void FixedUpdate()
     {
         AxisInput();
-
+        //debug_groundCheck();
         /// jump
         jumpController.HandleJump();
         //jumpController.jumpHandle();
 
         /// Movement
-        //Vector3 moveDir = (cam.Forward * v + cam.Right * h).normalized;
-        if (playerMoveDirection.sqrMagnitude > 0.01f) // moveDir
+        // --- Movement relative to camera ---
+        Vector3 camForward = Vector3.ProjectOnPlane(cam.Forward, Vector3.up).normalized;
+        Vector3 camRight = Vector3.ProjectOnPlane(cam.Right, Vector3.up).normalized;
+        Vector3 moveDir = (camForward * v + camRight * h).normalized;
+        if (moveDir.sqrMagnitude > 0.01f) // moveDir        playerMoveDirection
         {
             isWalking = true;
+            playerMoveDirection = new Vector3(moveDir.x, 0f, moveDir.z); // flatten Y
             MoveAndRotate();
         }
         else
@@ -78,7 +84,7 @@ public class MovementController : MonoBehaviour
 
 
 
-    /// --- Functions ---
+    /// ---------------------------------------------------------------------- Functions -----------------------------------------------------------
     private void AxisInput()
     {
         h = Input.GetAxisRaw("Horizontal");
@@ -92,12 +98,25 @@ public class MovementController : MonoBehaviour
         /// --- Move player ---
         Vector3 velocity = playerMoveDirection * moveSpeed;
         playerRB.MovePosition(playerRB.position + velocity * Time.fixedDeltaTime);
+        // --- Smoothly rotate player to face movement direction ---
+        if (playerMoveDirection.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(playerMoveDirection, Vector3.up);
+            playerRB.MoveRotation(
+                Quaternion.Slerp(playerRB.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        }
+
         /// --- Rotate player to face movment direction ---
+        /*
         Quaternion targetRotation = Quaternion.LookRotation(playerMoveDirection, Vector3.up);
         playerRB.MoveRotation(Quaternion.Slerp(playerRB.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        //playerRB.MoveRotation(Quaternion.Slerp(playerRB.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        */
     }
 
- 
+
+
+
     ///  --- Animation Functions --- 
     private void AnimateWalking()
     {

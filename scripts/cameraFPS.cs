@@ -1,16 +1,30 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
-    [Header("Settings")]
-    public float mouseSensitivity = 100f;
-    public float verticalClamp = 70f;
-    public float smoothTime = 0.05f;
+    [Header("Look Settings")]
+    public float mouseSensitivity = 2f;
+    public float verticalClamp = 80f;       // up/down limit
+    public float horizontalClamp = 90f;     // left/right limit
+    
+    [Header("Look smoothing Settings")]
+    public float lookSmoothSpeed = 10f;     // smoothing factor
+    private float smoothX, smoothY;         // smoothed values
+    
+    [Header("Camera FPS Settings")]
+    private float xRotation = 0f;           // pitch
+    private float yRotation = 0f;           // yaw
+    private Camera cam;
 
-    private float xRotation = 0f; // pitch
-    private float yRotation = 0f; // yaw
-    private Vector2 currentMouseDelta;
-    private Vector2 currentMouseVelocity;
+    public Vector3 Forward => cam != null ? cam.transform.forward : transform.forward;
+    public Vector3 Right => cam != null ? cam.transform.right : transform.right;
+
+    void Awake()
+    {
+        cam = GetComponentInChildren<Camera>();
+        if (cam == null)
+            Debug.LogError("⚠ No Camera found under " + gameObject.name);
+    }
 
     void Start()
     {
@@ -18,28 +32,29 @@ public class FirstPersonCamera : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        if (cam == null) return;
 
-        // Smooth input
-        Vector2 targetMouseDelta = new Vector2(mouseX, mouseY) * mouseSensitivity * Time.deltaTime;
-        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseVelocity, smoothTime);
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        // Vertical rotation (pitch)
-        xRotation -= currentMouseDelta.y;
+        // Accumulate rotations
+        yRotation += mouseX;
+        xRotation -= mouseY;
+
+        // Clamp like a real head
         xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
+        yRotation = Mathf.Clamp(yRotation, -horizontalClamp, horizontalClamp);
 
-        // Horizontal rotation (yaw)
-        yRotation += currentMouseDelta.x;
+        // Smoothly interpolate toward target
+        smoothX = Mathf.LerpAngle(smoothX, xRotation, Time.deltaTime * lookSmoothSpeed);
+        smoothY = Mathf.LerpAngle(smoothY, yRotation, Time.deltaTime * lookSmoothSpeed);
 
-        // Apply local rotation to camera pivot
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        // Apply yaw to the parent (HeadAnchor)
+        transform.localRotation = Quaternion.Euler(0f, yRotation, 0f);
+
+        // Apply pitch to the Camera child
+        cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
-
-    // --- Public accessors for other scripts ---
-    public float Yaw => yRotation;
-    public Vector3 Forward => new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-    public Vector3 Right => new Vector3(transform.right.x, 0f, transform.right.z).normalized;
 }

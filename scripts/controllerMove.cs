@@ -18,29 +18,25 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime = 0.1f;       // grace period after leaving ground
     public float fallMultiplier = 2.5f;   // faster fall
     public float lowJumpMultiplier = 2f;  // shorter jump if button released early                                   
-    [SerializeField] private MouseFacing mouseFacing;
     private float lastGroundedTime;
     private float lastJumpPressedTime;
 
-    void Awake()
-    {
-        if (mouseFacing == null)
-            mouseFacing = GetComponent<MouseFacing>();
-    }
+    private PlayerOrientation orientation;
+
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        orientation = GetComponent<PlayerOrientation>();
     }
 
     void Update()
     {
-        //HandleMovement();
-        HandleGravity();
-        HandleJump();
-
-        mouseFacing?.FaceMouse();
+     
         HandleMovement(); // Your movement still uses transform.forward, so W goes where you face
+        HandleGravity();
+        //HandleJump();
     }
 
     void HandleMovement()
@@ -50,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(x, 0f, z).normalized;
 
-        if (direction.magnitude >= 0.1f)
+        if (direction.sqrMagnitude >= 0.1f)
         {
             // Calculate target angle relative to camera
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
@@ -69,14 +65,15 @@ public class PlayerMovement : MonoBehaviour
             // No input → do not touch rotation
             turnSmoothVelocity = 0f; // reset smoothing so it doesn’t drift
         }
+
     }
 
     void HandleGravity()
     {
         isGrounded = controller.isGrounded;
-
+        // if vel is less tha zero set it to a specfic value
         if (isGrounded && velocity.y < 0)
-            velocity.y = -2f;
+            velocity.y = -2f;                   
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -101,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Variable jump height
-        if (velocity.y > 0 && !Input.GetButton("jump"))
+        if (velocity.y > 0 && !Input.GetButton("Jump"))
         {
             velocity.y += gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }

@@ -50,7 +50,7 @@ void FixedUpdate()
 
     public void HandleJump()
     {
-        // Called from MovementController.Update
+        // Called in controllerMove.cs Update()
         if (jumpRequested)
         {
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

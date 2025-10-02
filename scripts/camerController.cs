@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     // --- Public Inspector Variables ---
     [Header("Look Sensitivity")]
-    [SerializeField] private float lookSensitivity = 100f;
+    [SerializeField] private float lookSensitivity = 200f;
 
     [Header("Look Constraints")]
     [SerializeField] private float lookUpLimit = -90f;

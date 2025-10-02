@@ -1,3 +1,4 @@
+// New and Corrected Script - Overwrite your existing file with this code
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -5,19 +6,17 @@ using UnityEngine;
 public class PhysicsCharacterController : MonoBehaviour
 {
     [Header("Movement and character variables")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float moveSpeed = 10f; // Adjusted for a snappier feel
+    public float jumpForce = 15f;
 
     [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
-    // The field for the camera's Transform, serialized so you can assign it in the Inspector.
     [Header("Camera Movement Settings")]
     [SerializeField] private Transform cameraTransform;
 
-    // private references
     private Rigidbody rb;
     private bool jumpInputPressed = false;
     private bool isGrounded = false;
@@ -27,15 +26,14 @@ public class PhysicsCharacterController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.freezeRotation = true; // Prevents the capsule from toppling over
+            rb.freezeRotation = true;
         }
 
         if (groundCheck == null)
         {
-            Debug.LogError("GroundCheck Transform is not assigned. Please assign it in the Inspector.");
+            Debug.LogError("GroundCheck Transform is not assigned.");
         }
 
-        // Find the main camera if the reference isn't set, making the script more robust.
         if (cameraTransform == null)
         {
             if (Camera.main != null)
@@ -44,12 +42,11 @@ public class PhysicsCharacterController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No main camera found or assigned! Movement will not be relative to the camera.");
+                Debug.LogError("No main camera found or assigned!");
             }
         }
     }
 
-    // Capture input in Update()
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -58,7 +55,6 @@ public class PhysicsCharacterController : MonoBehaviour
         }
     }
 
-    // FixedUpdate for physics
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
@@ -69,63 +65,32 @@ public class PhysicsCharacterController : MonoBehaviour
 
     void HandleMovement()
     {
-        // Get player input
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
+        Vector3 moveDirection = Vector3.zero;
+
         if (cameraTransform != null)
         {
-            /// Get the camera's forward and right vectors
-            Vector3 camForward = cameraTransform.forward;
-            Vector3 camRight = cameraTransform.right;
+            Vector3 camForward = Vector3.Scale(cameraTransform.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 camRight = Vector3.Scale(cameraTransform.right, new Vector3(1, 0, 1)).normalized;
 
-            /// Flatten the vectors on the y-axis and normalize them
-            camForward.y = 0;
-            camRight.y = 0;
-            camForward.Normalize();
-            camRight.Normalize();
-
-            // Calculate the new movement direction based on camera orientation
-            Vector3 moveDirection = (camForward * moveVertical + camRight * moveHorizontal);
-
-            /// Apply movement force
-            if (moveDirection.magnitude > 0)
-            {
-                rb.AddForce(moveDirection * moveSpeed, ForceMode.Force);
-            }
-            else // Apply drag if no input is detected
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.95f, rb.linearVelocity.y, rb.linearVelocity.z * 0.95f);
-            }
+            moveDirection = (camForward * moveVertical + camRight * moveHorizontal).normalized;
         }
-        else /// Fallback if no camera reference is found
+        else
         {
-            Vector3 moveDirection = new Vector3(moveHorizontal, 0, moveVertical);
-            if (moveDirection.magnitude > 0)
-            {
-                rb.AddForce(transform.TransformDirection(moveDirection) * moveSpeed, ForceMode.Force);
-            }
-            else
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.95f, rb.linearVelocity.y, rb.linearVelocity.z * 0.95f);
-            }
+            moveDirection = new Vector3(moveHorizontal, 0, moveVertical).normalized;
         }
 
-        /// Optional: Rotate the character to face the direction of movement
-        //Vector3 currentVelocity = rb.linearVelocity;
-        //currentVelocity.y = 0;
-        //if (currentVelocity.magnitude > 0.1f)
-        //{
-        //    Quaternion targetRotation = Quaternion.LookRotation(currentVelocity);
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f);
-        //}
+        Vector3 newVelocity = moveDirection * moveSpeed;
+        rb.linearVelocity = new Vector3(newVelocity.x, rb.linearVelocity.y, newVelocity.z);
     }
 
     void HandleJump()
     {
         if (jumpInputPressed && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             jumpInputPressed = false;
         }
         else
@@ -134,7 +99,6 @@ public class PhysicsCharacterController : MonoBehaviour
         }
     }
 
-    // Visualization for debugging
     void OnDrawGizmos()
     {
         if (groundCheck != null)
@@ -144,3 +108,13 @@ public class PhysicsCharacterController : MonoBehaviour
         }
     }
 }
+
+
+/// Optional: Rotate the character to face the direction of movement
+//Vector3 currentVelocity = rb.linearVelocity;
+//currentVelocity.y = 0;
+//if (currentVelocity.magnitude > 0.1f)
+//{
+//    Quaternion targetRotation = Quaternion.LookRotation(currentVelocity);
+//    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f);
+//}

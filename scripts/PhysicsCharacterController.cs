@@ -34,6 +34,7 @@ public class PhysicsCharacterController : MonoBehaviour
             Debug.LogError("GroundCheck Transform is not assigned.");
         }
 
+
         if (cameraTransform == null)
         {
             if (Camera.main != null)
@@ -52,12 +53,15 @@ public class PhysicsCharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpInputPressed = true;
+            Debug.Log("Space Pressed" +jumpInputPressed);                                           // working 
         }
     }
 
     void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);     // Missing ground check !
+        if (isGrounded == true)
+            { Debug.Log("isGrounded = " + isGrounded); }
 
         HandleMovement();
         HandleJump();
@@ -67,7 +71,8 @@ public class PhysicsCharacterController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
+        
+        // Player character move vector , using this vector with camera rotation
         Vector3 moveDirection = Vector3.zero;
 
         if (cameraTransform != null)

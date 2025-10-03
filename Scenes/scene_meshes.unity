@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstPersonCamera
   mouseSensitivity: 1
-  verticalClamp: 80
-  horizontalClamp: 80
+  verticalClamp: 360
+  horizontalClamp: 360
   lookSmoothSpeed: 10
 --- !u!1001 &32024539
 PrefabInstance:
@@ -260,6 +260,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 754d855f0300bda4cb84abd3630fbb1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1138224801}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 754d855f0300bda4cb84abd3630fbb1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1138224802}
   m_SourcePrefab: {fileID: 100100000, guid: 754d855f0300bda4cb84abd3630fbb1b, type: 3}
 --- !u!4 &42244390 stripped
 Transform:
@@ -1116,7 +1119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138224790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc992649040de9546af7b0be0a9ee6f2, type: 3}
   m_Name: 
@@ -1137,7 +1140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138224790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52b14c0bf737b15489125ab328349f4c, type: 3}
   m_Name: 
@@ -1160,6 +1163,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpController
   jumpForce: 5
+--- !u!114 &1138224802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138224790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f71c493a41b88c4dab753d27c34442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsCharacterController
+  moveSpeed: 10
+  jumpForce: 15
+  groundCheck: {fileID: 269346009}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  cameraTransform: {fileID: 25053899}
 --- !u!1 &1159909088
 GameObject:
   m_ObjectHideFlags: 0

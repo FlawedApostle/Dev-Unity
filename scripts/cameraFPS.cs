@@ -44,8 +44,8 @@ public class FirstPersonCamera : MonoBehaviour
         xRotation -= mouseY;
 
         // Clamp like a real head
-        xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
-        yRotation = Mathf.Clamp(yRotation, -horizontalClamp, horizontalClamp);
+        //xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
+        //yRotation = Mathf.Clamp(yRotation, -horizontalClamp, horizontalClamp);
 
         // Smoothly interpolate toward target
         smoothX = Mathf.LerpAngle(smoothX, xRotation, Time.deltaTime * lookSmoothSpeed);

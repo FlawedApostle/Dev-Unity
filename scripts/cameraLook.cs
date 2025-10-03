@@ -1,30 +1,32 @@
 using UnityEngine;
-/// <summary>
-///  Attaching this to a empty parent of the character object we can manipulate the cam
-///  the camera had to be seperate from the rigidb Body components
-///  Notice this is a modulare, seperate block of code
-///  Meaning; it seperates the movement from rigidbody, therefore both are idnependant.
-///  primarly so we can get independant camera movment.
-/// </summary>
 
+/// <summary>
+///  Attaching this to an empty parent of the character object we can manipulate the camera.
+///  The camera is separate from the RigidBody components for independent movement.
+/// </summary>
 public class CameraLook : MonoBehaviour
 {
     [Header("Look Sensitivity")]
+    [Tooltip("Overall sensitivity for mouse look.")]
     public float lookSensitivity = 100f;
+    [Tooltip("Multiplier for vertical sensitivity. Adjust to balance with horizontal.")]
+    public float verticalSensitivityMultiplier = 1f;
 
     [Header("Look Constraints")]
     public float lookUpLimit = -90f;
     public float lookDownLimit = 90f;
 
-    [Header("Smoothing (Optional)")]
-    [Tooltip("Check to enable smooth camera movement.")]
-    public bool enableSmoothing = false;
+    [Header("Smoothing")]
+    [Tooltip("Enables smoothing for horizontal and vertical camera movement.")]
+    public bool enableSmoothing = true;
     [Range(1f, 30f)]
     [Tooltip("Adjusts how quickly the camera catches up to the target rotation. Lower values are smoother.")]
     public float smoothSpeed = 15f;
 
     private float xRotation = 0f;
     public float mouseXInput { get; private set; }
+
+    private Quaternion targetRotation;
 
     void Start()
     {
@@ -33,17 +35,18 @@ public class CameraLook : MonoBehaviour
 
     void Update()
     {
-        // REMOVED Time.deltaTime from mouse input. This is the primary fix.
+        // Get raw mouse input, adjusted by overall and vertical sensitivity.
+        // DO NOT multiply mouse input by Time.deltaTime.
         mouseXInput = Input.GetAxis("Mouse X") * lookSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity * verticalSensitivityMultiplier;
 
         // Apply mouse input to camera rotation
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, lookUpLimit, lookDownLimit);
 
-        Quaternion targetRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        targetRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Apply optional smoothing
+        // Apply smoothing to the vertical camera rotation
         if (enableSmoothing)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smoothSpeed * Time.deltaTime);

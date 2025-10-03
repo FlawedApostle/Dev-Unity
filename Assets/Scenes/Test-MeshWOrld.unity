@@ -974,8 +974,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: lookUpLimit
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: smoothSpeed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: lookDownLimit
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: enableSmoothing
@@ -983,7 +991,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: lookSensitivity
-      value: 12
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455598719242420900, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314428294838272259, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2828151923844294001, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1037,11 +1053,23 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7733235367573334918, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 985101012}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6270410885438838279, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2016736361}
   m_SourcePrefab: {fileID: 100100000, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+--- !u!4 &985101012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6950304769077276564, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+  m_PrefabInstance: {fileID: 985101011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1021048164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1538,6 +1566,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4254406586720809699, guid: 5d477455bf504c14488c024a2dd1099f, type: 3}
   m_PrefabInstance: {fileID: 545654796}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2016736359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6270410885438838279, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+  m_PrefabInstance: {fileID: 985101011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2016736361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016736359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15b2549dedfaad4b91d49e2e383d097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonCamera
+  mouseSensitivity: 2
+  verticalClamp: 80
+  horizontalClamp: 90
+  lookSmoothSpeed: 10
 --- !u!1001 &2023273827
 PrefabInstance:
   m_ObjectHideFlags: 0

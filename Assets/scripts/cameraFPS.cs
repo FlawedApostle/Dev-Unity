@@ -4,9 +4,9 @@ public class FirstPersonCamera : MonoBehaviour
 {
     [Header("Look Settings")]
     public float mouseSensitivity = 2f;
-    public float verticalClamp = 80f;       // up/down limit
-    public float horizontalClamp = 90f;     // left/right limit
-    
+    ///public float verticalClamp = 80f;       /// up/down limit    -> turned off in Update
+    ///public float horizontalClamp = 90f;     /// left/right limit -> turned off in Update
+
     [Header("Look smoothing Settings")]
     public float lookSmoothSpeed = 10f;     // smoothing factor
     private float smoothX, smoothY;         // smoothed values
@@ -43,9 +43,9 @@ public class FirstPersonCamera : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
 
-        // Clamp like a real head
-        //xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
-        //yRotation = Mathf.Clamp(yRotation, -horizontalClamp, horizontalClamp);
+        // Clamp like a real head -> (removed)
+        ///xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
+        ///yRotation = Mathf.Clamp(yRotation, -horizontalClamp, horizontalClamp);
 
         // Smoothly interpolate toward target
         smoothX = Mathf.LerpAngle(smoothX, xRotation, Time.deltaTime * lookSmoothSpeed);

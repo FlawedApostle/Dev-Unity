@@ -53,18 +53,15 @@ public class PhysicsCharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpInputPressed = true;
-            Debug.Log("Space Pressed" +jumpInputPressed);                                           // working 
+            ///Debug.Log("Space Pressed" +jumpInputPressed);
         }
     }
 
     void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);     // Missing ground check !
-        if (isGrounded == true)
-            { Debug.Log("isGrounded = " + isGrounded); }
-
-        HandleMovement();
-        HandleJump();
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        HandleMovement();   /// player movement
+        HandleJump();       /// player movement - modulated jump script
     }
 
     void HandleMovement()
@@ -95,6 +92,7 @@ public class PhysicsCharacterController : MonoBehaviour
     {
         if (jumpInputPressed && isGrounded)
         {
+            ///Debug.Log("Space Pressed && isGrounded" + jumpInputPressed + isGrounded);
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             jumpInputPressed = false;
         }

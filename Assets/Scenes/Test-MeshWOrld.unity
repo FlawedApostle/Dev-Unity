@@ -974,6 +974,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: lookUpLimit
       value: 360
       objectReference: {fileID: 0}
@@ -983,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: lookDownLimit
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 698646142302804713, guid: e523f6228e3bd2d4182989ce62e4e9fc, type: 3}
       propertyPath: enableSmoothing
@@ -1583,9 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b2549dedfaad4b91d49e2e383d097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstPersonCamera
-  mouseSensitivity: 2
-  verticalClamp: 80
-  horizontalClamp: 90
+  mouseSensitivity: 0.5
   lookSmoothSpeed: 10
 --- !u!1001 &2023273827
 PrefabInstance:

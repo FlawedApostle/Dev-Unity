@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = Mathf.Clamp(startHealth, 0f, maxHealth);
         EmitHealthChanged();
     }
-
+    // If depleteOverTime == true and is Not Dead then -> depletionRate * Time -> ApplyDamage Function apply Damage to player 
     private void Update()
     {
         if (depleteOverTime && !isDead)
@@ -39,7 +39,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    // Core API
+    /// DAMAGE
     public void ApplyDamage(float amount)
     {
         if (isDead) return;
@@ -54,7 +54,7 @@ public class HealthSystem : MonoBehaviour
             HandleDeath();
         }
     }
-
+    /// HEAL
     public void Heal(float amount)
     {
         if (isDead) return;

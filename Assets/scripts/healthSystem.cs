@@ -63,7 +63,7 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
         EmitHealthChanged();
     }
-
+    
     public void SetHealth(float value)
     {
         if (isDead) return;

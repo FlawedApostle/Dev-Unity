@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+// This works in tandem with HealthBarUI class
 
 public class HealthSystem : MonoBehaviour
 {
@@ -7,18 +8,18 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float startHealth = 100f;
     [SerializeField] private bool depleteOverTime = true;
-    [SerializeField] private float depletionRatePerSecond = 1f; // health lost per second
+    [SerializeField] private float depletionRatePerSecond = 1.0f; // health lost per second
 
     [Header("Events")]
     public UnityEvent<float, float> OnHealthChanged; // (current, max)
     public UnityEvent OnDeath;
-    public UnityEvent OnGameOver; // keep separate in case you want different logic later
+    public UnityEvent OnGameOver; // keep separate for different logic later
 
     // Public, callable value
     public float CurrentHealth { get; private set; }
     public float MaxHealth => maxHealth;
 
-    // Convenience: normalized 0..1 for UI fill
+    // Convenience: normalized 0.1 for UI fill
     public float Normalized => Mathf.Clamp01(CurrentHealth / maxHealth);
 
     private bool isDead = false;

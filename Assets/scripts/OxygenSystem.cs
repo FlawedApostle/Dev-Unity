@@ -28,7 +28,7 @@ public class OxygenSystem : MonoBehaviour
 
     private void Awake()
     {
-        // Health setting the health , and setting the UIBar
+        // Updating OxygenSystem UIbar
         maxOxygen = Mathf.Max(1f, maxOxygen);
         CurrentOxygen = Mathf.Clamp(startOxygen, 0f, maxOxygen);
         EmitOxygenChanged();
@@ -40,14 +40,14 @@ public class OxygenSystem : MonoBehaviour
     private void Update()
     {
         // Deplete Health
-        if (depleteOxygenOverTime && !isDead)
+        if (depleteOxygenOverTime && !isDead)               // if true && notDead
         {
             float delta = depletionOxygenRatePerSecond * Time.deltaTime;
             ApplyOxygenDamage(delta);
         }
     }
     // *** Oxygen ***
-    // DAMAGE - Oxygen
+    // SUBTRACT Oxygen
     public void ApplyOxygenDamage(float amount)
     {
         if (isDead) return;
@@ -55,7 +55,7 @@ public class OxygenSystem : MonoBehaviour
 
         CurrentOxygen = Mathf.Max(0f, CurrentOxygen - amount);
         EmitOxygenChanged();
-
+        // Death
         if (CurrentOxygen <= 0f && !isDead)
         {
             isDead = true;
@@ -63,8 +63,8 @@ public class OxygenSystem : MonoBehaviour
         }
     }
 
-    /// AddOxygen
-    public void AddOxygen(float amount)
+    // ADD Oxygen
+    public void OxygenAddAmount(float amount)
     {
         if (isDead) return;
         if (amount <= 0f) return;
@@ -72,7 +72,7 @@ public class OxygenSystem : MonoBehaviour
         CurrentOxygen = Mathf.Min(maxOxygen, CurrentOxygen + amount);
         EmitOxygenChanged();
     }
-    /// Set Oxygen
+    // Set Oxygen
     public void SetOxygen(float value)
     {
         if (isDead) return;
@@ -86,7 +86,7 @@ public class OxygenSystem : MonoBehaviour
             HandleDeath();
         }
     }
-    /// Set Oxygen Max
+    // Set Oxygen Max
     public void SetMaxOxygen(float newMax, bool keepRatio = true)
     {
         newMax = Mathf.Max(1f, newMax);
@@ -125,13 +125,3 @@ public class OxygenSystem : MonoBehaviour
 
 
 }
-
-///// Oxygen add
-//public void OxygenAddAmount(float amount)
-//{
-//    if (isDead) return;
-//    if (amount <= 0f) return;
-
-//    CurrentOxygen = Mathf.Min(maxOxygen, CurrentOxygen + amount);
-//    EmitOxygenChanged();
-//}

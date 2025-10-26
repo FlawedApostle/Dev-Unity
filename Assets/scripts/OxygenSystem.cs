@@ -64,7 +64,7 @@ public class OxygenSystem : MonoBehaviour
     }
 
     /// AddOxygen
-    public void OxygenAddAmount(float amount)
+    public void AddOxygen(float amount)
     {
         if (isDead) return;
         if (amount <= 0f) return;
@@ -121,4 +121,17 @@ public class OxygenSystem : MonoBehaviour
         // Optional: disable movement, play animation, etc.
         // Example: GetComponent<PlayerController>()?.enabled = false;
     }
+
+
+
 }
+
+///// Oxygen add
+//public void OxygenAddAmount(float amount)
+//{
+//    if (isDead) return;
+//    if (amount <= 0f) return;
+
+//    CurrentOxygen = Mathf.Min(maxOxygen, CurrentOxygen + amount);
+//    EmitOxygenChanged();
+//}

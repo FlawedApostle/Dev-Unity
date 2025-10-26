@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
   health: {fileID: 0}
+  Oxygen: {fileID: 0}
   slider: {fileID: 7998360523703821179}
 --- !u!1 &3624421317564670625
 GameObject:
@@ -343,7 +344,7 @@ GameObject:
   - component: {fileID: 6902053230607017028}
   - component: {fileID: 7998360523703821179}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: OxygenBarSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +434,7 @@ GameObject:
   - component: {fileID: 1160470360854919153}
   - component: {fileID: 2833707037117290622}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: title - Oxygen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

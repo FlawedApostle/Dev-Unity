@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5879443853291094335}
   - component: {fileID: 1641264042710087707}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title - Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 17, y: -2.300003}
+  m_AnchoredPosition: {x: 17, y: -2.2999878}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5879443853291094335
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 8470429082654406412}
   m_Layer: 5
   m_Name: HUD - Health
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 5453450858875789885}
   - component: {fileID: 2189452473353648563}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: HealthBarSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,4 +631,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
   health: {fileID: 0}
+  Oxygen: {fileID: 0}
   slider: {fileID: 2189452473353648563}

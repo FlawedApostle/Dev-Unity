@@ -69,15 +69,15 @@ public class OxygenSystem : MonoBehaviour
         if (isDead) return;
         if (amount <= 0f) return;
 
-        //CurrentOxygen = Mathf.Min(maxOxygen, CurrentOxygen + amount);
+        CurrentOxygen = Mathf.Min(maxOxygen, CurrentOxygen + amount);
         // if CurrentOxygen is equal or over the max then set health to max
-        if(CurrentOxygen + amount > maxOxygen)
+        if (CurrentOxygen >= startOxygen)
         {
             CurrentOxygen = Mathf.Clamp(startOxygen, 0f, maxOxygen);
             EmitOxygenChanged();
         }
 
-            EmitOxygenChanged();
+        EmitOxygenChanged();
     }
     // Set Oxygen
     public void SetOxygen(float value)

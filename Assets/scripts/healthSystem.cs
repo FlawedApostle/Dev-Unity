@@ -14,7 +14,6 @@ public class HealthSystem : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<float, float> OnHealthChanged; // (current, max)                  // healthBar change
-    //public UnityEvent<float, float> OnOxygenChanged; // (current, max)                  // OxygenBar change
     public UnityEvent OnDeath;
     public UnityEvent OnGameOver; // keep separate for different logic later
 
@@ -29,8 +28,9 @@ public class HealthSystem : MonoBehaviour
 
     private void Awake()
     {
-        // Health setting the health , and setting the UIBar
-        maxHealth = Mathf.Max(1f, maxHealth);
+        // Health SliderBarUI settings
+        // Mathf.Max(float,int) is to lock max health value to never be lower than 1
+        maxHealth = Mathf.Max(1.0f, maxHealth);                 
         CurrentHealth = Mathf.Clamp(startHealth, 0f, maxHealth);
         EmitHealthChanged();
 

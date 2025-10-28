@@ -23,9 +23,6 @@ public class HealthSystem : MonoBehaviour
     public float MaxHealth => maxHealth;
     public float NormalizedHealth => Mathf.Clamp01(CurrentHealth / maxHealth);             /// Convenience: normalized 0.1 for UI fill
     
-    // OxygenSystem [Settings] - implementation into HealthSystem
-    [SerializeField] private HealthSystem healthSystem;
-    
     // isDead check
     private bool isDead = false;
 
@@ -33,9 +30,9 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         // Health setting the health , and setting the UIBar
-        SetHealth();                /// function setting for setting the healthBar - uses HealthBarUI slider
+        maxHealth = Mathf.Max(1f, maxHealth);
+        CurrentHealth = Mathf.Clamp(startHealth, 0f, maxHealth);
         EmitHealthChanged();
-
     }
 
     // Update FrameRate
@@ -48,6 +45,8 @@ public class HealthSystem : MonoBehaviour
             float delta = depletionHealthRatePerSecond * Time.deltaTime;
             ApplyHealthDamage(delta);
         }
+
+ 
     }
                                                            // *** Health ***
     // DAMAGE - Health

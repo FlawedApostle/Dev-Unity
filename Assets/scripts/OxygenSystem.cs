@@ -22,6 +22,11 @@ public class OxygenSystem : MonoBehaviour
     public float MaxOxygen => maxOxygen;
     public float NormalizedOxygen => Mathf.Clamp01(CurrentOxygen / maxOxygen);             /// Convenience: normalized 0.1 for UI fill
 
+    // HealthSystem [Settings] - implementation into OxygenSystem
+    [SerializeField] private HealthSystem healthSystem;
+
+    // Seperating the Health from 'full death'
+    private bool oxygenDepleted = false;
 
     // isDead check
     private bool isDead = false;
@@ -31,8 +36,11 @@ public class OxygenSystem : MonoBehaviour
         // Updating OxygenSystem UIbar
         maxOxygen = Mathf.Max(1f, maxOxygen);
         CurrentOxygen = Mathf.Clamp(startOxygen, 0f, maxOxygen);
-        EmitOxygenChanged();
-
+        // Health - get HealthSystem Component
+        if (healthSystem == null)
+            healthSystem = FindObjectOfType<HealthSystem>();
+        
+        EmitOxygenChanged();            /// healthBarUI Slider
     }
 
     // Update FrameRate
@@ -45,9 +53,16 @@ public class OxygenSystem : MonoBehaviour
             float delta = depletionOxygenRatePerSecond * Time.deltaTime;
             ApplyOxygenDamage(delta);
         }
+
+        // If oxygen is zero, start damaging health
+        if (oxygenDepleted && healthSystem != null && !isDead)
+        {
+            float healthDamage = depletionOxygenRatePerSecond * Time.deltaTime;
+            healthSystem.ApplyHealthDamage(healthDamage);
+        }
     }
-    // *** Oxygen ***
-    // SUBTRACT Oxygen
+    
+    // Damage Oxygen
     public void ApplyOxygenDamage(float amount)
     {
         if (isDead) return;
@@ -58,8 +73,7 @@ public class OxygenSystem : MonoBehaviour
         // Death
         if (CurrentOxygen <= 0f && !isDead)
         {
-            isDead = true;
-            HandleDeath();
+            oxygenDepleted = true;
         }
     }
 
@@ -77,6 +91,11 @@ public class OxygenSystem : MonoBehaviour
             EmitOxygenChanged();
         }
 
+        if (CurrentOxygen > 0f)
+        {
+            oxygenDepleted = false;
+        }
+
         EmitOxygenChanged();
     }
     // Set Oxygen
@@ -92,6 +111,13 @@ public class OxygenSystem : MonoBehaviour
             isDead = true;
             HandleDeath();
         }
+    }
+    
+    public void SetOxygen()
+    {
+        // Updating OxygenSystem UIbar
+        maxOxygen = Mathf.Max(1f, maxOxygen);
+        CurrentOxygen = Mathf.Clamp(startOxygen, 0f, maxOxygen);
     }
     // Set Oxygen Max
     public void SetMaxOxygen(float newMax, bool keepRatio = true)

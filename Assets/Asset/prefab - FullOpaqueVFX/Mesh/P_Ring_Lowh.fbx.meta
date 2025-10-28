@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4f7d2ce1be07dc7439e63dd34cea3894
+guid: 4eac3817af004f988cc32eec3f23def6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -111,6 +111,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 312563
   packageName: Full Opaque Rain
-  packageVersion: 1.1
-  assetPath: Assets/FullOpaqueVFX/Mesh/P_Ring_Lowh.fbx
-  uploadId: 747831
+  packageVersion: 1.2
+  assetPath: Assets/FullOpaqueRain/Mesh/P_Ring_Lowh.fbx
+  uploadId: 809508

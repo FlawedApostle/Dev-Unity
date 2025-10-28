@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2251465a834c9e84c918681db39c2a36
+guid: ded62fb8b787492db5945d50268df6b6
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
@@ -10,6 +10,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 312563
   packageName: Full Opaque Rain
-  packageVersion: 1.1
-  assetPath: Assets/FullOpaqueVFX/Settings/OptiFXSkybox.mat
-  uploadId: 747831
+  packageVersion: 1.2
+  assetPath: Assets/FullOpaqueRain/Settings/OptiFXSkybox.mat
+  uploadId: 809508

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ab2dbf87a114e84588556b4dcbb14c3
+guid: 4ef5443e67844243a2f4a7009238b403
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -111,6 +111,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 312563
   packageName: Full Opaque Rain
-  packageVersion: 1.1
-  assetPath: Assets/FullOpaqueVFX/Mesh/P_Ring_Triangle.fbx
-  uploadId: 747831
+  packageVersion: 1.2
+  assetPath: Assets/FullOpaqueRain/Mesh/P_Ring_Triangle.fbx
+  uploadId: 809508

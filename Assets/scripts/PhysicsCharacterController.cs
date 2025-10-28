@@ -85,15 +85,19 @@ public class PhysicsCharacterController : MonoBehaviour
         }
 
         Vector3 newVelocity = moveDirection * moveSpeed;
-        rb.linearVelocity = new Vector3(newVelocity.x, rb.linearVelocity.y, newVelocity.z);
+        rb.linearVelocity = new Vector3(newVelocity.x, rb.linearVelocity.y, newVelocity.z);                   // OLD LINES
+        //rb.velocity = new Vector3(newVelocity.x, rb.velocity.y, newVelocity.z);                             // NEW LINES
+
     }
 
+    /// JUMP
     void HandleJump()
     {
         if (jumpInputPressed && isGrounded)
         {
             ///Debug.Log("Space Pressed && isGrounded" + jumpInputPressed + isGrounded);
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);                 // OLD LINES
+            //rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);                             // NEW LINES
             jumpInputPressed = false;
         }
         else
@@ -119,5 +123,14 @@ public class PhysicsCharacterController : MonoBehaviour
 //if (currentVelocity.magnitude > 0.1f)
 //{
 //    Quaternion targetRotation = Quaternion.LookRotation(currentVelocity);
+//    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f);
+//}
+
+/// Turn to face
+//Vector3 flatDirection = moveDirection;
+//flatDirection.y = 0f;
+//if (flatDirection.magnitude > 0.01f)
+//{
+//    Quaternion targetRotation = Quaternion.LookRotation(flatDirection);
 //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f);
 //}

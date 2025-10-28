@@ -34,8 +34,7 @@ public class OxygenSystem : MonoBehaviour
     private void Awake()
     {
         // Updating OxygenSystem UIbar
-        maxOxygen = Mathf.Max(1f, maxOxygen);
-        CurrentOxygen = Mathf.Clamp(startOxygen, 0f, maxOxygen);
+        SetOxygen();
         // Health - get HealthSystem Component
         if (healthSystem == null)
             healthSystem = FindObjectOfType<HealthSystem>();
@@ -70,7 +69,7 @@ public class OxygenSystem : MonoBehaviour
 
         CurrentOxygen = Mathf.Max(0f, CurrentOxygen - amount);
         EmitOxygenChanged();
-        // Death
+        
         if (CurrentOxygen <= 0f && !isDead)
         {
             oxygenDepleted = true;

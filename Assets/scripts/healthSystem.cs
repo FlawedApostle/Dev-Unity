@@ -30,8 +30,7 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         // Health setting the health , and setting the UIBar
-        maxHealth = Mathf.Max(1f, maxHealth);
-        CurrentHealth = Mathf.Clamp(startHealth, 0f, maxHealth);
+        SetHealth();
         EmitHealthChanged();
     }
 

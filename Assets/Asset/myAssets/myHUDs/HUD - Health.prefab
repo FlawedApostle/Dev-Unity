@@ -631,5 +631,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
   health: {fileID: 0}
-  Oxygen: {fileID: 0}
   slider: {fileID: 2189452473353648563}

@@ -25,7 +25,8 @@ public class HealthSystem : MonoBehaviour
     
     // isDead check
     private bool isDead = false;
-
+    // Seperating the Health from 'full death'
+    private bool healthDepleted = false;
 
     private void Awake()
     {
@@ -63,6 +64,28 @@ public class HealthSystem : MonoBehaviour
             HandleDeath();
         }
     }
+    /// Add Oxygen
+    public void OxygenAddAmount(float amount)
+    {
+        if (isDead) return;
+        if (amount <= 0f) return;
+
+        CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+        // if CurrentOxygen is equal or over the max then set health to max
+        if (CurrentHealth >= startHealth)
+        {
+            CurrentHealth = Mathf.Clamp(startHealth, 0f, maxHealth);
+            EmitHealthChanged();
+        }
+
+        if (CurrentHealth > 0f)
+        {
+            healthDepleted = false;
+        }
+
+        EmitHealthChanged();
+    }
+
 
     /// Heal
     public void Heal(float amount)

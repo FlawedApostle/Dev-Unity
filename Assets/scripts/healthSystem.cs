@@ -10,11 +10,11 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float startHealth = 100f;
     [SerializeField] private bool depleteHealthOverTime = true;
-    [SerializeField] private float depletionHealthRatePerSecond = 1.0f; // health lost per second
+    [SerializeField] private float depletionHealthRatePerSecond = 1.0f;                     // health lost per second
     
     [Header("Events")]
-    public UnityEvent<float, float> OnHealthChanged; // (current, max)                  // healthBar change
-    ///public UnityEvent<float, float> OnOxygenChanged; // (current, max)                  // OxygenBar change
+    public UnityEvent<float, float> OnHealthChanged;    // (current, max)                      // healthBar change
+    ///public UnityEvent<float, float> OnOxygenChanged; // (current, max)                       // OxygenBar change
     public UnityEvent OnDeath;
     public UnityEvent OnGameOver; // keep separate for different logic later
     
@@ -64,8 +64,9 @@ public class HealthSystem : MonoBehaviour
             HandleDeath();
         }
     }
-    /// Add Oxygen
-    public void OxygenAddAmount(float amount)
+    
+    /// Add Health
+    public void HealthAddAmount(float amount)
     {
         if (isDead) return;
         if (amount <= 0f) return;
@@ -86,6 +87,11 @@ public class HealthSystem : MonoBehaviour
         EmitHealthChanged();
     }
 
+    // Update Health Bar
+    private void EmitHealthChanged()
+    {
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+    }
 
     /// Heal
     public void Heal(float amount)
@@ -138,14 +144,6 @@ public class HealthSystem : MonoBehaviour
     {
         depletionHealthRatePerSecond = Mathf.Max(0f, perSecond);
     }
-
-    // Update Health Bar
-    private void EmitHealthChanged()
-    {
-        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
-    }
-
-
 
                                                                 // *** Game Over ***
     /// Death

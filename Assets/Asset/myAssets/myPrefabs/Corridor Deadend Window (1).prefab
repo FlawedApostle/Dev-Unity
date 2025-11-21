@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2686806846869738001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor Deadend Window (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4292728526270859541}
   - component: {fileID: 57119568239740709}
   - component: {fileID: 8914449080755717495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tunnel Window001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 5581775091797304314}
   - component: {fileID: 917567770155587580}
   - component: {fileID: 8928083922350058995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tunnel Window Frame001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4462053802099810979}
   - component: {fileID: 7188092619230464939}
   - component: {fileID: 8310872412102054046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tunnel Window wall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

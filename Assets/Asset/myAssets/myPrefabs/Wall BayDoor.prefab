@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3804630164126317302}
   - component: {fileID: 8919946722474623548}
   - component: {fileID: 1336245135750162674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LP_Bay_Door_Frame_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4477220571419827117}
   - component: {fileID: 629956290235913687}
   - component: {fileID: 3118166688611046243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LP_Bay_Door_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2356844958263681158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall BayDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 3370724665478297043}
   - component: {fileID: 5043430927606174906}
   - component: {fileID: 1026435158615775471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LP_Bay_Door_Wall_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}

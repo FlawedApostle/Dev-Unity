@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7079826827101545752}
   - component: {fileID: 2746434352243348177}
   - component: {fileID: 1910927916917755773}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Floor Tile Steel (0)
   m_TagString: Ground
   m_Icon: {fileID: 0}

@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5378247557403543265}
   - component: {fileID: 4398095567463116162}
   - component: {fileID: 204269942541203803}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Corridor Floor Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7758502286518248513}
   - component: {fileID: 1547244107921218938}
   - component: {fileID: 4543558737556788949}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lights001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 7110658214148066096}
   - component: {fileID: 8332578946192693114}
   - component: {fileID: 5009302086702110206}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor Beams Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 7322709013911187205}
   - component: {fileID: 6649029834876606266}
   - component: {fileID: 4477203868900322292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor Piipes Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 6104936605791304331}
   - component: {fileID: 8603336375761877798}
   - component: {fileID: 7846757888556829644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corridor Ceiling Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 5082932897324397305}
   - component: {fileID: 7153369599294493459}
   - component: {fileID: 1062738315280059593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Corridor Walls Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}

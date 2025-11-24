@@ -10192,6 +10192,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 383312423}
     m_Modifications:
+    - target: {fileID: 1617591027737389318, guid: 7889641338c44f448b19ff5ea89c497a, type: 3}
+      propertyPath: m_Name
+      value: Corridor Doors Lights
+      objectReference: {fileID: 0}
     - target: {fileID: 3841922616194960720, guid: 7889641338c44f448b19ff5ea89c497a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.7067604
@@ -10231,10 +10235,6 @@ PrefabInstance:
     - target: {fileID: 3841922616194960720, guid: 7889641338c44f448b19ff5ea89c497a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617591027737389318, guid: 7889641338c44f448b19ff5ea89c497a, type: 3}
-      propertyPath: m_Name
-      value: Corridor Doors Lights
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

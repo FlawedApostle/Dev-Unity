@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 7791645180164713828}
   - component: {fileID: 7234885047320705895}
   - component: {fileID: 3743437435296065172}
-  m_Layer: 3
+  m_Layer: 17
   m_Name: Tunnel Stair Rails001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 4934634308401742496}
   - component: {fileID: 7947084976934620282}
   - component: {fileID: 4923425869041366870}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: Tunnel Incline Steps001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

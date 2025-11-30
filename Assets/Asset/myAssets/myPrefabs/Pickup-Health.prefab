@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 822812013958201886}
   - component: {fileID: 3122011372817687833}
   m_Layer: 0
-  m_Name: Pickup-Health - Room (6)
+  m_Name: Pickup-Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

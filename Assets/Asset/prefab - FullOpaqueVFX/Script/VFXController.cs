@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace VFXTools
 {
-    [ExecuteAlways]
+    [ExecuteAlways]     /// Will execute in the scene Live, all changes will be instantanious
+
     public class VFXController : MonoBehaviour
     {
         [Header("Paramètres Modifiables")]

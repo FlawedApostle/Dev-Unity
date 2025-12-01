@@ -126,7 +126,7 @@ public class AIPickupSpawner : MonoBehaviour
         if (TryGetValidSpawnPoint(out spawnPos))
         {
             Instantiate(Pickup_Health, spawnPos, Quaternion.identity);
-            //currentSpawnedCount++;
+            currentSpawnedCount++;
             Debug.Log("Health Pickup Spawned.");
         }
         else

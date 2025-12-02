@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace VFXTools
@@ -6,22 +7,34 @@ namespace VFXTools
 
     public class VFXController : MonoBehaviour
     {
-        [Header("Paramètres Modifiables")]
-        [SerializeField] public Color particleColor = Color.white;
+        [Header("Modifiable Paramaters")]
+        [SerializeField] private Color particleColor = Color.red;
         [SerializeField, Range(0f, 4f)] private float intensity = 1f; 
         [SerializeField] private Vector3 windDirection = Vector3.zero;
-
+        /// Unity built in component particle system
         private ParticleSystem[] particleSystems; 
-        private float[] defaultRateOverTimeValues;
+        private float[] defaultRateOverTimeValues;      // emission value
 
         void Awake()
         {
             ApplySettings();
         }
 
+        /// <summary>
+        /// ApplySettings() is launched in safeApply to avoid error - JobTempAlloc  maximum lifespan of 4 frames old
+        ///  First let Unity load and safe changes. Once done, Launch in SafeApply
+        /// </summary>
         void OnValidate()
         {
-            ApplySettings();
+            // Delay ApplySettings until Unity finishes validation
+            EditorApplication.delayCall += SafeApply;
+            //ApplySettings();
+        }
+
+        void SafeApply()
+        {
+            if (this != null)
+                ApplySettings();
         }
 
         void FindParticles()

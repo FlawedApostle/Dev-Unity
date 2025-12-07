@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 740718345930356338}
   - component: {fileID: 2584270300643740285}
   - component: {fileID: 5727662820638747078}
-  - component: {fileID: 7175594077478084454}
   m_Layer: 0
   m_Name: LP_Door_Wall_snaps
   m_TagString: Untagged
@@ -408,23 +407,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.42, y: 6.7, z: 1.9}
   m_Center: {x: 0.0000032410026, y: 5.71, z: 2.99}
---- !u!114 &7175594077478084454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222557777488320952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee05166761d723540bedad320a0c7368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SlidingDoor
-  door: {fileID: 8459068548742042571}
-  openHeight: 3
-  openSpeed: 2
-  detectionRange: 5
-  player: {fileID: 0}
 --- !u!1 &8813652136695624325
 GameObject:
   m_ObjectHideFlags: 0

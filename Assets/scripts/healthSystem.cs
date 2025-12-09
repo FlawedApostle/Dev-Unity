@@ -154,6 +154,12 @@ public class HealthSystem : MonoBehaviour
         return depletionHealthRatePerSecond;
     }
 
+    /// Get player Health
+    public float getPlayerHealth()
+    {
+        return maxHealth;
+    }
+
                                                                 // *** Game Over ***
     /// Death
     private void HandleDeath()

@@ -19,6 +19,12 @@ public class FirstPersonCamera : MonoBehaviour
     public Vector3 Forward => cam != null ? cam.transform.forward : transform.forward;
     public Vector3 Right => cam != null ? cam.transform.right : transform.right;
 
+    /// GameManager
+    GameMenuManager gameMenuManager;
+
+    /// Pause Menu - Can I look if im in the pause menu ? (short answer is NO !)
+    public bool CanLook { get; set; } = true; // default true
+
     void Awake()
     {
         cam = GetComponentInChildren<Camera>();
@@ -28,13 +34,29 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Start()
     {
+        /// Only lock cursor if the game has begun
+        if (GameMenuManager.GameIsActive)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
+        /// Stop camera rotation + unlock cursor while in menu
+        if (!GameMenuManager.GameIsActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return;
+        }
+
         if (cam == null) return;
+
+        if (!CanLook) return;   // skip rotation if we cannot look
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;

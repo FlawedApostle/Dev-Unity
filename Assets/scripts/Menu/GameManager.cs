@@ -13,7 +13,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private GameObject player; // assign in Inspector
     [SerializeField] private MonoBehaviour playerMovementScript; // or your input script
 
-    // Is Game Active ? - CameraFPS
+    // Camera FPS - To check if the game is active, if false (fame not running) stop cam movement , if true (game is running - active) then allow cam movements
     public static bool GameIsActive = false;
 
     /// Get reference to the camera (playerController)
@@ -26,7 +26,7 @@ public class GameMenuManager : MonoBehaviour
     private void Awake()
     {
         // check player health 
-        Debug.Log("Player Health (start) - " + playerhealthsystem.getPlayerHealth());
+        Debug.Log("Player Health (start) - " + playerhealthsystem.getPlayerCurrentHealth());
         GetActiveScene();       // tell me what scene is loading in console
     }
 
@@ -65,6 +65,14 @@ public class GameMenuManager : MonoBehaviour
             else
                 PauseGame();
         }
+
+        //if (playerhealthsystem.getPlayerCurrentHealth() <= 0)
+        //{
+        //    ShowDeathScreen();
+        //    Debug.Log("Player Health is Zero ! we made it !" + playerhealthsystem.getPlayerCurrentHealth());
+
+        //}
+
     }
 
     // Test
@@ -73,9 +81,9 @@ public class GameMenuManager : MonoBehaviour
         Debug.Log("Button Clicked");
     }
 
-    /// --------------
-    /// START GAME
-    /// --------------
+    // --------------
+    // START GAME
+    // --------------
     public void StartGame()
     {
         mainMenuCanvas.SetActive(false);
@@ -97,9 +105,9 @@ public class GameMenuManager : MonoBehaviour
         Debug.Log("Start Current Scene: " + SceneManager.GetActiveScene().name);
     }
 
-    /// --------------
-    /// Pause GAME
-    /// --------------
+    // --------------
+    // Pause GAME
+    // --------------
     public void PauseGame()
     {
         pauseMenuCanvas.SetActive(true);
@@ -121,9 +129,9 @@ public class GameMenuManager : MonoBehaviour
 
         Debug.Log("Pause Current Scene: " + SceneManager.GetActiveScene().name);
     }
-    /// --------------
-    /// Resume GAME
-    /// --------------
+    // --------------
+    // Resume GAME
+    // --------------
     public void ResumeGame()
     {
         pauseMenuCanvas.SetActive(false);
@@ -144,27 +152,27 @@ public class GameMenuManager : MonoBehaviour
 
         Debug.Log("Resume Current Scene: " + SceneManager.GetActiveScene().name);
     }
-    /// --------------
-    /// Restart GAME
-    /// --------------
+    // --------------
+    // Restart GAME
+    // --------------
     public void Restart()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("Restart Current Scene: " + SceneManager.GetActiveScene().name);
     }
-    /// --------------
-    /// Quit GAME
-    /// --------------
+    // --------------
+    // Quit GAME
+    // --------------
     public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Quitting Current Scene: " + SceneManager.GetActiveScene().name);
     }
-    /// --------------
-    /// Quit GAME
-    // Called by player health script when health reaches 0
-    /// --------------
+    // --------------
+    // Quit GAME
+    /// Called by player health script when health reaches 0
+    // --------------
     public void ShowDeathScreen()
     {
         deathMenuCanvas.SetActive(true);
@@ -181,6 +189,10 @@ public class GameMenuManager : MonoBehaviour
         Debug.Log("Death - Current Scene: " + SceneManager.GetActiveScene().name);
     }
 
+
+    // -------
+    //  DEBUG: Get Active Current Scene Name
+    // -------
     private void GetActiveScene()
     {
          Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);

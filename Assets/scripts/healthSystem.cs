@@ -155,9 +155,9 @@ public class HealthSystem : MonoBehaviour
     }
 
     /// Get player Health
-    public float getPlayerHealth()
+    public float getPlayerCurrentHealth()
     {
-        return maxHealth;
+        return CurrentHealth;
     }
 
                                                                 // *** Game Over ***

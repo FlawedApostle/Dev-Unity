@@ -1,14 +1,7 @@
 fileFormatVersion: 2
 guid: 33489984e56a36d43a282f25dc125c44
-AssetOrigin:
-  serializedVersion: 1
-  productId: 317551
-  packageName: Cyborg_Modified-Human
-  packageVersion: 1.0
-  assetPath: Assets/Cyborg-Pawn/Meshes/Cyborg-Pawn.fbx
-  uploadId: 749776
 ModelImporter:
-  serializedVersion: 24200
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -27,7 +20,7 @@ ModelImporter:
       name: Head
     second: {fileID: 2100000, guid: 94dfc2834d2b97b46b783b3220969ce4, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -38,6 +31,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -60,7 +55,6 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -78,9 +72,6 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
-    generateMeshLods: 0
-    meshLodGenerationFlags: 0
-    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -124,9 +115,15 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317551
+  packageName: Cyborg_Modified-Human
+  packageVersion: 1.0
+  assetPath: Assets/Asset/prefab - Cyborg-Pawn/Meshes/Cyborg-Pawn.fbx
+  uploadId: 749776
